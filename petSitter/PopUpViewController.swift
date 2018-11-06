@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import FirebaseDatabase
 import Foundation
+import FirebaseStorage
 
 
 class PopUpViewController: UIViewController {
@@ -28,35 +29,61 @@ class PopUpViewController: UIViewController {
     
     var myLat:CLLocationDegrees!
     var myLong:CLLocationDegrees!
-    
-    
-    
-    
     var ref: DatabaseReference!
+    var sentEmail:String?
+    var owner:String?
     
-    
-    @IBAction func register(_ sender: UIButton) {
-        
+    @IBAction func next(_ sender: Any) {
         let ad = address.text
         let al = allergies.text
-        let em = email.text
+        sentEmail = email.text
         let gen = gender.text
-        let owner = petOwner.text
+        owner = petOwner.text
         let ve = vet.text
- 
+        
+        
+        
         let info = ["address": ad,
                     "allergies": al,
-                    "email": em,
+                    "email": sentEmail,
                     "gender": gen,
                     "latitude": myLat,
                     "longitude": myLong,
                     "pet_owner": owner,
                     "pictures": "no",
                     "vet": ve] as [String : Any]
-
+        
         ref.child("Users").child(owner!).setValue(info)
-        //performSegue(withIdentifier: "poptoMain", sender: self)
-        dismiss(animated: true)
+        
+        ref.child("Users").child(owner!).child("Connections").setValue("")
+        
+        performSegue(withIdentifier: "imageSegue", sender: self)
+        
+        
+        
+    
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let image = segue.destination as! ImageViewController
+        image.email = sentEmail
+        image.owner = owner
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @IBAction func register(_ sender: UIButton) {
+        
+        
+        
         
         
     }

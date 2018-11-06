@@ -12,6 +12,7 @@ target 'petSitter' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
+  pod 'Firebase/Storage'
   
 
   target 'petSitterTests' do

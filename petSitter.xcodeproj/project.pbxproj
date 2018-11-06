@@ -12,6 +12,11 @@
 		C5B829BB0713B5F2A3788D32 /* Pods_petSitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A810945EECA8386DCB5BC9 /* Pods_petSitterUITests.framework */; };
 		F24C2D022137621C00088C1D /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C2D012137621C00088C1D /* PopUpViewController.swift */; };
 		F24C2D042140790300088C1D /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C2D032140790300088C1D /* LogoutViewController.swift */; };
+		F24C2D0C2149B9E800088C1D /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C2D0B2149B9E800088C1D /* ImageViewController.swift */; };
+		F2870B6721505073004B02A7 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2870B6621505073004B02A7 /* RequestViewController.swift */; };
+		F2870B692150568A004B02A7 /* RequestInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2870B682150568A004B02A7 /* RequestInfoViewController.swift */; };
+		F2870B6B2151524E004B02A7 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2870B6A2151524E004B02A7 /* CustomCell.swift */; };
+		F2870B6D21516628004B02A7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2870B6C21516628004B02A7 /* ProfileViewController.swift */; };
 		F291F5DB212DC03B00883C9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F5DA212DC03B00883C9C /* AppDelegate.swift */; };
 		F291F5DD212DC03B00883C9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F5DC212DC03B00883C9C /* ViewController.swift */; };
 		F291F5E0212DC03B00883C9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F291F5DE212DC03B00883C9C /* Main.storyboard */; };
@@ -58,6 +63,12 @@
 		C42F3EAE1A1CA26C9690C36C /* Pods-petSitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petSitterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-petSitterUITests/Pods-petSitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F24C2D012137621C00088C1D /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		F24C2D032140790300088C1D /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
+		F24C2D0B2149B9E800088C1D /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		F2870B6621505073004B02A7 /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		F2870B682150568A004B02A7 /* RequestInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInfoViewController.swift; sourceTree = "<group>"; };
+		F2870B6A2151524E004B02A7 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		F2870B6C21516628004B02A7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F2870B6E215AC084004B02A7 /* petSitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = petSitter.entitlements; sourceTree = "<group>"; };
 		F291F5D7212DC03B00883C9C /* petSitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petSitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F291F5DA212DC03B00883C9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F291F5DC212DC03B00883C9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +157,7 @@
 		F291F5D9212DC03B00883C9C /* petSitter */ = {
 			isa = PBXGroup;
 			children = (
+				F2870B6E215AC084004B02A7 /* petSitter.entitlements */,
 				F291F5DA212DC03B00883C9C /* AppDelegate.swift */,
 				F291F5DC212DC03B00883C9C /* ViewController.swift */,
 				F291F60B212DE4E600883C9C /* Artwork.swift */,
@@ -158,6 +170,11 @@
 				F299CE5821370DBB007EFEB4 /* LoginViewController.swift */,
 				F24C2D012137621C00088C1D /* PopUpViewController.swift */,
 				F24C2D032140790300088C1D /* LogoutViewController.swift */,
+				F24C2D0B2149B9E800088C1D /* ImageViewController.swift */,
+				F2870B6621505073004B02A7 /* RequestViewController.swift */,
+				F2870B682150568A004B02A7 /* RequestInfoViewController.swift */,
+				F2870B6A2151524E004B02A7 /* CustomCell.swift */,
+				F2870B6C21516628004B02A7 /* ProfileViewController.swift */,
 			);
 			path = petSitter;
 			sourceTree = "<group>";
@@ -264,6 +281,11 @@
 				TargetAttributes = {
 					F291F5D6212DC03B00883C9C = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
+						};
 					};
 					F291F5EA212DC03C00883C9C = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -337,6 +359,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -347,6 +370,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -418,12 +442,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F299CE5921370DBB007EFEB4 /* LoginViewController.swift in Sources */,
+				F24C2D0C2149B9E800088C1D /* ImageViewController.swift in Sources */,
+				F2870B6721505073004B02A7 /* RequestViewController.swift in Sources */,
 				F291F5DD212DC03B00883C9C /* ViewController.swift in Sources */,
 				F24C2D022137621C00088C1D /* PopUpViewController.swift in Sources */,
 				F291F60C212DE4E600883C9C /* Artwork.swift in Sources */,
+				F2870B692150568A004B02A7 /* RequestInfoViewController.swift in Sources */,
 				F291F60E212E214000883C9C /* InfoViewController.swift in Sources */,
 				F299CE57212F48E9007EFEB4 /* myUser.swift in Sources */,
 				F24C2D042140790300088C1D /* LogoutViewController.swift in Sources */,
+				F2870B6D21516628004B02A7 /* ProfileViewController.swift in Sources */,
+				F2870B6B2151524E004B02A7 /* CustomCell.swift in Sources */,
 				F291F5DB212DC03B00883C9C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,7 +627,9 @@
 			baseConfigurationReference = 40DB7706213F8C4844E3EAEC /* Pods-petSitter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = petSitter/petSitter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCQLWVS9UQ;
 				INFOPLIST_FILE = petSitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -616,7 +647,9 @@
 			baseConfigurationReference = 8D676AD5D32CAFC40B9D5993 /* Pods-petSitter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = petSitter/petSitter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCQLWVS9UQ;
 				INFOPLIST_FILE = petSitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

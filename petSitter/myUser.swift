@@ -11,6 +11,8 @@ import Foundation
 
 class myUser{
     
+    var requests = [String:String]()
+    var profilePics: UIImage?
     var address: String?
     var allergies: String?
     var email: String?

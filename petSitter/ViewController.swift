@@ -10,7 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 import FirebaseDatabase
+import FirebaseStorage
 import Foundation
+
 
 protocol MyDelegate{
     func populate(data:[myUser])
@@ -26,6 +28,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MyDelegate{
     var sentEmail:String?
     var userLat:CLLocationDegrees!
     var userLong:CLLocationDegrees!
+    var userData: [myUser] = []
+    var requestCount:Int!
+    var requestees = [String:String]()
+    
+    var identifier:String?
+    
+    var currentUserProfile = myUser()
+    
     
     
     @IBAction func logOut(_ sender: Any) {
@@ -33,6 +43,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MyDelegate{
         
     }
     
+    @IBAction func profile(_ sender: Any) {
+        performSegue(withIdentifier: "profileSegue", sender: self)
+        
+    }
     
     var selectedUser = myUser()
     
@@ -72,6 +86,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MyDelegate{
             for user in value{
                 let thisUser = myUser()
                 let dictionary = user.value as! NSDictionary
+                //need to check for connections 
+                
+                if var requests = dictionary["Request"] as? [String:String] {
+                    
+                    thisUser.requests = requests 
+                }
+                else{
+                    
+                }
+                if var images = dictionary["Image 44"] as? String{
+                    var imageURL = Storage.storage().reference(forURL: images)
+                    if let url = URL(string: images){
+                        do{
+                        
+                            let data = try Data(contentsOf: url)
+                            var pic = UIImage(data: data)
+                            thisUser.profilePics = pic
+                        }catch let err{
+                            print("Error: ")
+                        }
+                    }/**
+                    imageURL.getData(maxSize: 1 * 1024 * 1024){(data, error) -> Void in
+                        
+                        var pic = UIImage(data: data!)
+                        thisUser.profilePics = pic
+                    }
+ 
+                    
+                }
+                else{
+                    
+                }
+                
+                **/
+                }
                 let address = dictionary["address"] as! String
                 let allergies = dictionary["allergies"] as! String
                 let email = dictionary["email"] as! String
@@ -82,6 +131,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MyDelegate{
                 let pet_owner = dictionary["pet_owner"] as! String
                 let pictures = dictionary["pictures"] as! String
                 let vet = dictionary["vet"] as! String
+                
                 thisUser.address = address
                 thisUser.allergies = allergies
                 thisUser.email = email
@@ -177,17 +227,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MyDelegate{
         **/
     }
     func populate(data:[myUser]){
-        selectedUser = data[0]
+        userData = data 
+        //selectedUser = data[0]
+        
         let neEmail:String? = sentEmail
         var count:Int = 0
         for user in data{
+            
             var newEmail = user.email
+            //need to change this to a boolean or something
             let isEqual = (sentEmail == newEmail)
             if (isEqual){
                 count = count + 1
             }
         }
             if (count >= 1){
+               //if count is greater than or equal to 1 (meaning there's an account for the user), check if there are requests and perform segue is necessary
+        
                 
             }
             else{
@@ -216,6 +272,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MyDelegate{
         let artwork = Artwork(title: user.pet_owner!, locationName: user.address!, discipline: user.gender!, coordinate: CLLocationCoordinate2D(latitude: user.latitude!, longitude: user.longitude!))
         
         map.addAnnotation(artwork)
+                
+            }
+                //if it's the current user's profile
+            else{
+                //sets current profile to variable so it can be transferred to other segues
+                
+                currentUserProfile = user
+                requestCount = user.requests.count
+                if requestCount != 0{
+                    requestees = user.requests
+                    performSegue(withIdentifier: "requestSegue", sender: nil)
+                }
+                
             }
         }
         
@@ -254,10 +323,10 @@ extension ViewController: MKMapViewDelegate {
         // 2
         guard let annotation = annotation as? Artwork else { return nil }
         // 3
-        let identifier = "marker"
+        let identifier = annotation.title
         var view: MKMarkerAnnotationView
         // 4
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier!)
             as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
@@ -269,12 +338,14 @@ extension ViewController: MKMapViewDelegate {
             let button = UIButton(type: .detailDisclosure)
             button.frame = CGRect(x:0, y:0, width:30, height:30)
             button.addTarget(self, action: #selector(infoClicked(_sender:)), for: .touchUpInside)
+            button.accessibilityIdentifier = annotation.title
             view.rightCalloutAccessoryView = button
         }
         return view
     }
     
-    @objc func infoClicked(_sender: AnyObject?){
+    @objc func infoClicked(_sender: UIButton){
+        identifier = _sender.accessibilityIdentifier
         performSegue(withIdentifier: "infoSegue", sender: self)
     }
     
@@ -287,10 +358,30 @@ extension ViewController: MKMapViewDelegate {
         else if segue.identifier == "infoSegue"{
             let destinationVC = segue.destination as! InfoViewController
             destinationVC.userInfo = selectedUser
+            destinationVC.userData = userData
+            destinationVC.currentUserEmail = sentEmail!
+            destinationVC.identifier = identifier
+        }
+        else if segue.identifier == "requestSegue"{
+            let request = segue.destination as! RequestViewController
+            request.requestAmount = requestCount
+            request.userData = userData
+            request.requestees = requestees
+            request.currentUser = currentUserProfile
+            
+            
+            
+        }
+        else if segue.identifier == "profileSegue"{
+            let profile = segue.destination as! ProfileViewController
+            profile.user = currentUserProfile
+            
         }
     }
     
     
 }
+
+
 
 
